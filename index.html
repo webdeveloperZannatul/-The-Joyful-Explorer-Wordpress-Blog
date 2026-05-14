@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Joyful Explorer — Notes From The Road</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'caveat': ['Caveat', 'cursive'],
+                    },
+                    colors: {
+                        'warm': {
+                            50: '#FFF8F0',
+                            100: '#FFEFD6',
+                            200: '#FFDBA8',
+                            300: '#FFC478',
+                            400: '#FFAB48',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                        },
+                        'sage': {
+                            50: '#F6F7F4',
+                            100: '#E8EBE2',
+                            200: '#D1D7C5',
+                            300: '#A8B392',
+                            400: '#7E8F65',
+                            500: '#5C6B45',
+                            600: '#475535',
+                        },
+                        'earth': {
+                            50: '#FAF6F1',
+                            100: '#F0E6D6',
+                            200: '#E0CCAD',
+                            300: '#C5A87A',
+                            400: '#B08D5A',
+                            500: '#8B6F47',
+                            600: '#6B5538',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFF8F0;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            background-image: 
+                linear-gradient(135deg, rgba(107, 85, 56, 0.3) 0%, rgba(0,0,0,0.15) 40%, rgba(245, 158, 11, 0.2) 100%),
+                url('https://hapi.mmcreation.com/hapidam/914ae319-2a8c-42fe-aa19-da9a8ae81f16/hotel-academie-saint-germain-quartier-012.jpg?size=lg?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+        }
+
+        .logo-compass {
+            animation: spin-slow 20s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .animate-fadeInUp { animation: fadeInUp 1s ease forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 1s ease forwards; }
+        .animate-fadeInRight { animation: fadeInRight 1s ease forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-1000 { animation-delay: 1s; }
+
+        .scroll-hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(107, 85, 56, 0.2);
+        }
+
+        .card-hover:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        .card-img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #F59E0B, #D97706);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .parallax-layer {
+            will-change: transform;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFDBA8 50%, #FFE4BC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #D1D7C5, #C5A87A, #D1D7C5, transparent);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-text-shadow {
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .img-mask {
+            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
+        }
+
+        .journal-line {
+            background-image: repeating-linear-gradient(
+                transparent, transparent 31px, #E8EBE2 31px, #E8EBE2 32px
+            );
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF8F0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(#C5A87A, #8B6F47);
+            border-radius: 10px;
+        }
+
+        .pulse-dot {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.3); }
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .gallery-item img {
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item .overlay {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .stamp {
+            border: 3px solid #8B6F47;
+            border-radius: 4px;
+            padding: 8px 16px;
+            transform: rotate(-5deg);
+            display: inline-block;
+        }
+
+        .header-scrolled {
+            background: rgba(255, 248, 240, 0.97) !important;
+            box-shadow: 0 4px 30px rgba(107, 85, 56, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-warm-50">
+
+    <!-- Header -->
+    <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <svg class="logo-compass absolute w-12 h-12" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="22" stroke="#8B6F47" stroke-width="1.5" stroke-dasharray="4 3"/>
+                            <circle cx="24" cy="24" r="16" stroke="#C5A87A" stroke-width="1"/>
+                        </svg>
+                        <svg class="relative w-6 h-6" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2L15 10L12 8L9 10L12 2Z" fill="#D97706"/>
+                            <path d="M12 22L9 14L12 16L15 14L12 22Z" fill="#8B6F47"/>
+                            <path d="M2 12L10 9L8 12L10 15L2 12Z" fill="#B08D5A"/>
+                            <path d="M22 12L14 15L16 12L14 9L22 12Z" fill="#C5A87A"/>
+                            <circle cx="12" cy="12" r="2" fill="#D97706"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="font-playfair text-lg sm:text-xl font-bold text-earth-600 leading-tight group-hover:text-warm-600 transition-colors">The Joyful Explorer</h1>
+                        <p class="font-caveat text-sm text-earth-400 -mt-0.5">Notes From The Road</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">Home</a>
+                    <a href="#about" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">About</a>
+                    <a href="#journal" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">Journal</a>
+                    <a href="#gallery" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">Gallery</a>
+                    <a href="#destinations" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">Destinations</a>
+                    <a href="#contact" class="nav-link font-inter text-sm font-medium text-earth-600 hover:text-warm-600 transition-colors">Get In Touch</a>
+                    <a href="#" class="ml-2 px-5 py-2.5 bg-gradient-to-r from-warm-500 to-warm-600 text-white font-inter text-sm font-medium rounded-full hover:shadow-lg hover:shadow-warm-200 transition-all duration-300 hover:-translate-y-0.5">Follow Along</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden p-2 text-earth-600" onclick="toggleMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-warm-50 shadow-2xl z-50 p-8">
+            <button onclick="toggleMenu()" class="absolute top-6 right-6 text-earth-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="mt-16 flex flex-col gap-6">
+                <a href="#home" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">Home</a>
+                <a href="#about" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">About</a>
+                <a href="#journal" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">Journal</a>
+                <a href="#gallery" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">Gallery</a>
+                <a href="#destinations" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">Destinations</a>
+                <a href="#contact" onclick="toggleMenu()" class="font-playfair text-xl text-earth-600 hover:text-warm-600 transition-colors">Get In Touch</a>
+                <a href="#" class="mt-4 px-6 py-3 bg-gradient-to-r from-warm-500 to-warm-600 text-white text-center font-medium rounded-full">Follow Along</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/30"></div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-32 left-10 animate-float delay-200 hidden lg:block">
+            <div class="stamp text-white/70 font-caveat text-lg">
+                ✈ Wandering
+            </div>
+        </div>
+        <div class="absolute bottom-40 right-16 animate-float delay-600 hidden lg:block">
+            <div class="stamp text-white/70 font-caveat text-lg">
+                📍 Exploring
+            </div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <div class="animate-fadeInUp">
+                <br><p class="font-caveat text-2xl sm:text-3xl text-warm-200 mb-4 hero-text-shadow">Welcome to</p>
+            </div>
+            <div class="animate-fadeInUp delay-200">
+                <h1 class="font-playfair text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold gradient-text hero-text-shadow leading-tight mb-4">
+                    The Joyful<br>Explorer
+                </h1>
+            </div>
+            <div class="animate-fadeInUp delay-400">
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="h-px w-16 sm:w-24 bg-warm-300/50"></div>
+                    <p class="font-caveat text-xl sm:text-2xl text-warm-200 hero-text-shadow italic">Notes From The Road</p>
+                    <div class="h-px w-16 sm:w-24 bg-warm-300/50"></div>
+                </div>
+            </div>
+            <div class="animate-fadeInUp delay-600">
+                <p class="font-playfair text-lg sm:text-2xl lg:text-3xl text-white/90 hero-text-shadow max-w-3xl mx-auto leading-relaxed italic">
+                    "Real experiences, Observed and Remembered."
+                </p>
+            </div>
+            <div class="animate-fadeInUp delay-800 mt-10">
+                <p class="font-inter text-sm sm:text-base text-white/70 max-w-xl mx-auto mb-8">
+                    A personal travel journal — capturing places, moments, and the stories they leave behind.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#journal" class="px-8 py-4 bg-gradient-to-r from-warm-500 to-warm-600 text-white font-inter font-medium rounded-full hover:shadow-2xl hover:shadow-warm-500/30 transition-all duration-300 hover:-translate-y-1">
+                        Read The Journal
+                    </a>
+                    <a href="#about" class="px-8 py-4 bg-white/15 backdrop-blur-sm text-white font-inter font-medium rounded-full border border-white/30 hover:bg-white/25 transition-all duration-300 hover:-translate-y-1">
+                        My Story
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#about" class="flex flex-col items-center gap-2">
+                <span class="font-inter text-xs text-white/60 tracking-widest uppercase">Scroll</span>
+                <svg class="w-5 h-5 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Marquee Strip -->
+    <div class="bg-earth-600 py-3 marquee-container">
+        <div class="marquee-content">
+            <span class="inline-flex items-center gap-8 px-4 text-warm-200 font-caveat text-lg">
+                <span>✦ Cities</span><span>✦ Restaurants</span><span>✦ Hidden Gems</span><span>✦ Sunsets</span><span>✦ Local Flavors</span><span>✦ Side Streets</span><span>✦ Morning Markets</span><span>✦ Observations</span><span>✦ Memories</span><span>✦ Sentiments</span><span>✦ Wanderings</span><span>✦ Stories</span>
+            </span>
+            <span class="inline-flex items-center gap-8 px-4 text-warm-200 font-caveat text-lg">
+                <span>✦ Cities</span><span>✦ Restaurants</span><span>✦ Hidden Gems</span><span>✦ Sunsets</span><span>✦ Local Flavors</span><span>✦ Side Streets</span><span>✦ Morning Markets</span><span>✦ Observations</span><span>✦ Memories</span><span>✦ Sentiments</span><span>✦ Wanderings</span><span>✦ Stories</span>
+            </span>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 sm:py-28 bg-warm-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="scroll-hidden">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700&q=80" alt="Travel scenery" class="rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-5 hidden sm:block">
+                            <p class="font-caveat text-2xl text-earth-600">"Places blur together<br>if you don't write<br>them down."</p>
+                        </div>
+                        <div class="absolute -top-4 -left-4 w-24 h-24 border-2 border-warm-400 rounded-2xl"></div>
+                    </div>
+                </div>
+
+                <div class="scroll-hidden" style="transition-delay: 0.2s">
+                    <div class="inline-flex items-center gap-2 bg-warm-100 rounded-full px-4 py-2 mb-6">
+                        <span class="w-2 h-2 bg-warm-500 rounded-full pulse-dot"></span>
+                        <span class="font-inter text-sm font-medium text-warm-700">About This Journey</span>
+                    </div>
+                    <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600 mb-6 leading-tight">
+                        Why I Started<br><span class="text-warm-600">Writing It Down</span>
+                    </h2>
+                    <div class="space-y-4 font-inter text-earth-500 leading-relaxed">
+                        <p>I've reached a point in life where I finally have the time to travel more freely. This blog is a way to keep a record of where I go, what I see, and what I experience along the way.</p>
+                        <p>It's also a way for friends to follow along, and maybe find ideas for their own trips.</p>
+                        <p class="text-earth-400 italic">I'm not trying to create a travel guide or a business. This is simply a personal journal — notes from the road as I go.</p>
+                    </div>
+                    <div class="mt-8 flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="font-playfair text-3xl font-bold text-warm-600" id="countCities">0</p>
+                            <p class="font-inter text-xs text-earth-400 uppercase tracking-wider mt-1">Cities</p>
+                        </div>
+                        <div class="w-px h-12 bg-earth-200"></div>
+                        <div class="text-center">
+                            <p class="font-playfair text-3xl font-bold text-warm-600" id="countStories">0</p>
+                            <p class="font-inter text-xs text-earth-400 uppercase tracking-wider mt-1">Stories</p>
+                        </div>
+                        <div class="w-px h-12 bg-earth-200"></div>
+                        <div class="text-center">
+                            <p class="font-playfair text-3xl font-bold text-warm-600" id="countPhotos">0</p>
+                            <p class="font-inter text-xs text-earth-400 uppercase tracking-wider mt-1">Photos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-4xl mx-auto"></div>
+
+    <!-- What You'll Find Section -->
+    <section class="py-20 sm:py-28 bg-warm-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-hidden">
+                <p class="font-caveat text-xl text-warm-600 mb-3">What you'll find here</p>
+                <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600">Day by Day, Place by Place</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="scroll-hidden card-hover bg-white rounded-2xl p-6 text-center shadow-sm border border-earth-100">
+                    <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-warm-100 flex items-center justify-center">
+                        <i class="fas fa-city text-2xl text-warm-600"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-semibold text-earth-600 mb-2">Cities & Places</h3>
+                    <p class="font-inter text-sm text-earth-400">Each destination, big or small, gets its own story.</p>
+                </div>
+
+                <div class="scroll-hidden card-hover bg-white rounded-2xl p-6 text-center shadow-sm border border-earth-100" style="transition-delay: 0.1s">
+                    <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-sage-100 flex items-center justify-center">
+                        <i class="fas fa-camera text-2xl text-sage-500"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-semibold text-earth-600 mb-2">Photographs</h3>
+                    <p class="font-inter text-sm text-earth-400">Visual memories from every corner visited.</p>
+                </div>
+
+                <div class="scroll-hidden card-hover bg-white rounded-2xl p-6 text-center shadow-sm border border-earth-100" style="transition-delay: 0.2s">
+                    <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-earth-100 flex items-center justify-center">
+                        <i class="fas fa-utensils text-2xl text-earth-500"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-semibold text-earth-600 mb-2">Restaurants & Food</h3>
+                    <p class="font-inter text-sm text-earth-400">Local flavors and memorable meals along the way.</p>
+                </div>
+
+                <div class="scroll-hidden card-hover bg-white rounded-2xl p-6 text-center shadow-sm border border-earth-100" style="transition-delay: 0.3s">
+                    <div class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-warm-100 flex items-center justify-center">
+                        <i class="fas fa-feather-alt text-2xl text-warm-600"></i>
+                    </div>
+                    <h3 class="font-playfair text-lg font-semibold text-earth-600 mb-2">Thoughts & Sentiments</h3>
+                    <p class="font-inter text-sm text-earth-400">Personal reflections and quiet observations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal Entries Section -->
+    <section id="journal" class="py-20 sm:py-28 bg-sage-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-hidden">
+                <p class="font-caveat text-xl text-warm-600 mb-3">Latest entries</p>
+                <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600">From The Journal</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Entry 1 -->
+                <article class="scroll-hidden card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-sage-100">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="Paris streets" class="card-img w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+                            <span class="font-inter text-xs font-medium text-earth-600">📍 Paris, France</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="font-inter text-xs text-earth-400">March 15, 2025</span>
+                            <span class="w-1 h-1 bg-earth-300 rounded-full"></span>
+                            <span class="font-inter text-xs text-warm-600">5 min read</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">Morning Light on the Left Bank</h3>
+                        <p class="font-inter text-sm text-earth-400 leading-relaxed">The café was nearly empty at seven. The coffee was strong. The street was still waking up...</p>
+                        <a href="#" class="inline-flex items-center gap-2 mt-4 font-inter text-sm font-medium text-warm-600 hover:text-warm-700 transition-colors">
+                            Continue reading <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Entry 2 -->
+                <article class="scroll-hidden card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-sage-100" style="transition-delay: 0.15s">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=600&q=80" alt="Lisbon" class="card-img w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+                            <span class="font-inter text-xs font-medium text-earth-600">📍 Lisbon, Portugal</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="font-inter text-xs text-earth-400">March 8, 2025</span>
+                            <span class="w-1 h-1 bg-earth-300 rounded-full"></span>
+                            <span class="font-inter text-xs text-warm-600">3 min read</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">Tram 28 and Tilework Stories</h3>
+                        <p class="font-inter text-sm text-earth-400 leading-relaxed">The tram rattled uphill through streets so narrow I could've reached out and touched the walls...</p>
+                        <a href="#" class="inline-flex items-center gap-2 mt-4 font-inter text-sm font-medium text-warm-600 hover:text-warm-700 transition-colors">
+                            Continue reading <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Entry 3 -->
+                <article class="scroll-hidden card-hover bg-white rounded-2xl overflow-hidden shadow-sm border border-sage-100" style="transition-delay: 0.3s">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&q=80" alt="Rome" class="card-img w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+                            <span class="font-inter text-xs font-medium text-earth-600">📍 Rome, Italy</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="font-inter text-xs text-earth-400">February 28, 2025</span>
+                            <span class="w-1 h-1 bg-earth-300 rounded-full"></span>
+                            <span class="font-inter text-xs text-warm-600">4 min read</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">A Long Lunch in Trastevere</h3>
+                        <p class="font-inter text-sm text-earth-400 leading-relaxed">We found the restaurant by accident. No sign outside, just a chalkboard propped against the door...</p>
+                        <a href="#" class="inline-flex items-center gap-2 mt-4 font-inter text-sm font-medium text-warm-600 hover:text-warm-700 transition-colors">
+                            Continue reading <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="text-center mt-12 scroll-hidden">
+                <a href="#" class="inline-flex items-center gap-2 px-8 py-4 bg-earth-600 text-white font-inter font-medium rounded-full hover:bg-earth-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                    View All Journal Entries <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote / Highlight Section -->
+    <section class="relative py-24 sm:py-32 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Beach" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-earth-600/70"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center scroll-hidden">
+            <svg class="w-12 h-12 text-warm-300/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="font-playfair text-2xl sm:text-4xl lg:text-5xl text-white leading-relaxed italic">
+                Some posts may be detailed, others just observations from a day or a place that stood out.
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-3">
+                <div class="h-px w-12 bg-warm-400/50"></div>
+                <p class="font-caveat text-xl text-warm-300">If you're reading this, I'm glad you're here.</p>
+                <div class="h-px w-12 bg-warm-400/50"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-20 sm:py-28 bg-warm-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-hidden">
+                <p class="font-caveat text-xl text-warm-600 mb-3">Visual memories</p>
+                <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600">Moments Captured</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="gallery-item scroll-hidden relative col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80" alt="Venice" class="w-full h-full object-cover rounded-2xl" style="min-height:300px;">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-6">
+                        <div>
+                            <p class="font-playfair text-xl font-semibold text-white">Venice, Italy</p>
+                            <p class="font-inter text-sm text-white/70">Golden hour on the Grand Canal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.1s">
+                    <img src="https://images.unsplash.com/photo-1504019347908-b45f9b0b8dd5?w=400&q=80" alt="Mountain" class="w-full h-48 object-cover rounded-2xl">
+
+                    <div class="gallery-item scroll-hidden relative col-span-2 row-span-2 scroll-visible">
+                    <br><img style="height:292px; width:292px;" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&amp;q=80" alt="Venice" class="w-full h-full object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-6">
+                        <div>
+                            <p class="font-playfair text-xl font-semibold text-white">Santorini, Greece</p>
+                            <p class="font-inter text-sm text-white/70">White-washed buildings against blue domes.</p>
+                        </div>
+                    </div></div>
+                    <!-- <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Swiss Alps</p>
+                    </div> -->
+                </div>
+
+                <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.15s">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="Food" class="w-full h-48 object-cover rounded-2xl">
+                    <br>
+                    <div class="gallery-item scroll-hidden relative scroll-visible" style="transition-delay: 0.15s">
+                
+                    <div class="gallery-item scroll-hidden relative scroll-visible" style="transition-delay: 0.15s">
+                    <img style="width:292px; height:300px;" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&amp;q=80" alt="Food" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Swiss Alps</p>
+                    </div>
+                </div>
+                </div>
+<!--                     <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Local cuisine</p>
+                    </div> -->
+                </div>
+
+             <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.2s">
+                    <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=400&q=80" alt="London" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">London, UK</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.25s">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&q=80" alt="Lake" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Lake Bled</p>
+                    </div>
+                </div>
+                <!-- <div class="gallery-item scroll-hidden relative col-span-2 scroll-visible" style="transition-delay: 0.3s">
+                    <img src="https://www.visitutah.com/azure/cmsroot/visitutah/media/site-assets/winter-photography/ski-resorts/solitude/web2000_solitude_solitude_2017_adamclark_0031.jpg?w=800&amp;q=80" alt="Mountain Solitude" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <div>
+                            <p class="font-playfair text-lg font-semibold text-white">Solitude Mountain</p>
+                            
+                        </div>
+                    </div>
+                </div> -->
+               <div class="gallery-item scroll-hidden relative col-span-2 scroll-visible" style="transition-delay: 0.3s">
+                    <img src="https://www.visitutah.com/azure/cmsroot/visitutah/media/site-assets/winter-photography/ski-resorts/solitude/web2000_solitude_solitude_2017_adamclark_0031.jpg?w=800&amp;q=80" alt="Mountain Solitude" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <div>
+                            <p class="font-playfair text-lg font-semibold text-white">Solitude Mountain</p>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="gallery-item scroll-hidden relative col-span-2" style="transition-delay: 0.3s">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Santorini" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <div>
+                            <p class="font-playfair text-lg font-semibold text-white">Santorini, Greece</p>
+                            <p class="font-inter text-sm text-white/70">Sunset over the caldera</p>
+                        </div>
+                    </div>
+                </div>  -->
+
+                <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.35s">
+                    <img src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee?w=400&q=80" alt="Market" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Morning market</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item scroll-hidden relative" style="transition-delay: 0.4s">
+                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&q=80" alt="Street" class="w-full h-48 object-cover rounded-2xl">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-2xl flex items-end p-4">
+                        <p class="font-inter text-sm text-white">Side streets</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-20 sm:py-28 bg-earth-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-hidden">
+                <p class="font-caveat text-xl text-warm-600 mb-3">Where I've been</p>
+                <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600">Destinations Explored</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Destination 1 -->
+                <div class="scroll-hidden card-hover flex bg-white rounded-2xl overflow-hidden shadow-sm border border-earth-100">
+                    <div class="w-1/3 min-h-[200px]">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX2RaRPFiwMX7tr-DOM-bha-TZq7aBQrq5oA&amp;s?w=400&amp;q=80" alt="Barcelona" class="card-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-6 flex flex-col justify-center">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🇪🇸</span>
+                            <span class="font-inter text-xs text-warm-600 font-medium uppercase tracking-wider">Spain</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">Barcelona</h3>
+                        <p class="font-inter text-sm text-earth-400">Gaudí's colors, tapas bars, and the sound of the sea.</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-calendar text-warm-400"></i> Feb 2025</span>
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-image text-warm-400"></i> 24 photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destination 2 -->
+                <div class="scroll-hidden card-hover flex bg-white rounded-2xl overflow-hidden shadow-sm border border-earth-100" style="transition-delay: 0.1s">
+                    <div class="w-1/3 min-h-[200px]">
+                        <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=80" alt="London" class="card-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-6 flex flex-col justify-center">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🇬🇧</span>
+                            <span class="font-inter text-xs text-warm-600 font-medium uppercase tracking-wider">England</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">London</h3>
+                        <p class="font-inter text-sm text-earth-400">Rainy walks, hidden pubs, and world-class museums.</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-calendar text-warm-400"></i> Jan 2025</span>
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-image text-warm-400"></i> 31 photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destination 3 -->
+                <div class="scroll-hidden card-hover flex bg-white rounded-2xl overflow-hidden shadow-sm border border-earth-100" style="transition-delay: 0.2s">
+                    <div class="w-1/3 min-h-[200px]">
+                        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&q=80" alt="Amalfi" class="card-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-6 flex flex-col justify-center">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🇮🇹</span>
+                            <span class="font-inter text-xs text-warm-600 font-medium uppercase tracking-wider">Italy</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">Amalfi Coast</h3>
+                        <p class="font-inter text-sm text-earth-400">Cliffside roads, lemon groves, and the bluest water.</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-calendar text-warm-400"></i> Mar 2025</span>
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-image text-warm-400"></i> 18 photos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destination 4 -->
+                <div class="scroll-hidden card-hover flex bg-white rounded-2xl overflow-hidden shadow-sm border border-earth-100" style="transition-delay: 0.3s">
+                    <div class="w-1/3 min-h-[200px]">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80" alt="Paris" class="card-img w-full h-full object-cover">
+                    </div>
+                    <div class="w-2/3 p-6 flex flex-col justify-center">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-lg">🇫🇷</span>
+                            <span class="font-inter text-xs text-warm-600 font-medium uppercase tracking-wider">France</span>
+                        </div>
+                        <h3 class="font-playfair text-xl font-semibold text-earth-600 mb-2">Paris</h3>
+                        <p class="font-inter text-sm text-earth-400">Early mornings, boulangeries, and quiet streets.</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-calendar text-warm-400"></i> Mar 2025</span>
+                            <span class="inline-flex items-center gap-1 text-xs text-earth-400"><i class="fas fa-image text-warm-400"></i> 42 photos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How This Blog Works -->
+    <section class="py-20 sm:py-28 bg-warm-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1 scroll-hidden">
+                    <p class="font-caveat text-xl text-warm-600 mb-3">How this works</p>
+                    <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600 mb-8 leading-tight">
+                        A Simple<br><span class="text-warm-600">Personal Journal</span>
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-warm-100 flex items-center justify-center">
+                                <span class="font-playfair font-bold text-warm-600">01</span>
+                            </div>
+                            <div>
+                                <h4 class="font-playfair text-lg font-semibold text-earth-600">I Travel</h4>
+                                <p class="font-inter text-sm text-earth-400 mt-1">New places, familiar ones revisited — wherever the road leads.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center">
+                                <span class="font-playfair font-bold text-sage-600">02</span>
+                            </div>
+                            <div>
+                                <h4 class="font-playfair text-lg font-semibold text-earth-600">I Write It Down</h4>
+                                <p class="font-inter text-sm text-earth-400 mt-1">Cities, restaurants, sentiments, observations — before they blur together.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-earth-100 flex items-center justify-center">
+                                <span class="font-playfair font-bold text-earth-500">03</span>
+                            </div>
+                            <div>
+                                <h4 class="font-playfair text-lg font-semibold text-earth-600">Friends Follow Along</h4>
+                                <p class="font-inter text-sm text-earth-400 mt-1">And maybe find ideas for their own trips along the way.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 scroll-hidden" style="transition-delay: 0.2s">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=700&q=80" alt="Travel planning" class="rounded-2xl shadow-2xl w-full object-cover h-[450px]">
+                        <div class="absolute -bottom-6 -left-6 bg-warm-500 text-white rounded-xl p-5 shadow-xl hidden sm:block">
+                            <p class="font-caveat text-2xl">Not a travel guide.</p>
+                            <p class="font-caveat text-lg opacity-80">Just honest notes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter / Subscribe -->
+    <section class="py-16 bg-gradient-to-r from-earth-600 via-earth-500 to-warm-700">
+        <div class="max-w-4xl mx-auto px-4 text-center scroll-hidden">
+            <p class="font-caveat text-xl text-warm-200 mb-3">Stay updated</p>
+            <h2 class="font-playfair text-3xl sm:text-4xl font-bold text-white mb-4">Follow The Journey</h2>
+            <p class="font-inter text-warm-200 mb-8 max-w-lg mx-auto">Get notified when new journal entries are posted. No spam, just travel stories.</p>
+            <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="handleSubscribe(event)">
+                <input type="email" placeholder="Your email address" required class="flex-1 px-5 py-3.5 rounded-full bg-white/15 border border-white/25 text-white placeholder-white/50 font-inter text-sm focus:bg-white/20 transition-all">
+                <button type="submit" class="px-8 py-3.5 bg-warm-500 text-white font-inter font-medium rounded-full hover:bg-warm-400 transition-all duration-300 hover:-translate-y-0.5 shadow-lg">
+                    Subscribe
+                </button>
+            </form>
+            <p id="subscribeMsg" class="font-inter text-sm text-warm-200 mt-3 hidden">Thank you! You'll hear from the road soon. ✈️</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 sm:py-28 bg-sage-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="scroll-hidden">
+                    <p class="font-caveat text-xl text-warm-600 mb-3">Say hello</p>
+                    <h2 class="font-playfair text-4xl sm:text-5xl font-bold text-earth-600 mb-6 leading-tight">
+                        Get In Touch
+                    </h2>
+                    <p class="font-inter text-earth-400 leading-relaxed mb-8">
+                        Have a question, a travel suggestion, or just want to say hello? I'd love to hear from you. This blog is meant to be personal, and that includes the conversations around it.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-warm-100 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-globe text-warm-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-inter text-sm font-medium text-earth-600">Blog</p>
+                                <p class="font-inter text-sm text-earth-400">thejoyfulexplorer.wordpress.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-sage-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-inter text-sm font-medium text-earth-600">Email</p>
+                                <p class="font-inter text-sm text-earth-400">hello@thejoyfulexplorer.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-earth-100 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-earth-500"></i>
+                            </div>
+                            <div>
+                                <p class="font-inter text-sm font-medium text-earth-600">Currently</p>
+                                <p class="font-inter text-sm text-earth-400">Somewhere on the road ✈️</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <img src="https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?w=500&q=80" alt="Travel desk" class="rounded-2xl w-full h-48 object-cover shadow-lg">
+                    </div>
+                </div>
+
+                <div class="scroll-hidden" style="transition-delay: 0.2s">
+                    <form class="bg-white rounded-2xl p-8 shadow-lg border border-sage-100" onsubmit="handleContact(event)">
+                        <h3 class="font-playfair text-2xl font-semibold text-earth-600 mb-6">Send a Message</h3>
+                        <div class="space-y-5">
+                            <div>
+                                <label class="font-inter text-sm font-medium text-earth-600 mb-2 block">Name</label>
+                                <input type="text" required placeholder="Your name" class="w-full px-4 py-3 rounded-xl border border-earth-200 font-inter text-sm text-earth-600 placeholder-earth-300 focus:border-warm-400 transition-all">
+                            </div>
+                            <div>
+                                <label class="font-inter text-sm font-medium text-earth-600 mb-2 block">Email</label>
+                                <input type="email" required placeholder="your@email.com" class="w-full px-4 py-3 rounded-xl border border-earth-200 font-inter text-sm text-earth-600 placeholder-earth-300 focus:border-warm-400 transition-all">
+                            </div>
+                            <div>
+                                <label class="font-inter text-sm font-medium text-earth-600 mb-2 block">Subject</label>
+                                <select class="w-full px-4 py-3 rounded-xl border border-earth-200 font-inter text-sm text-earth-600 focus:border-warm-400 transition-all bg-white">
+                                    <option>Just saying hello</option>
+                                    <option>Travel suggestion</option>
+                                    <option>Question about a post</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-inter text-sm font-medium text-earth-600 mb-2 block">Message</label>
+                                <textarea rows="4" required placeholder="Your message..." class="w-full px-4 py-3 rounded-xl border border-earth-200 font-inter text-sm text-earth-600 placeholder-earth-300 focus:border-warm-400 transition-all resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-warm-500 to-warm-600 text-white font-inter font-medium rounded-xl hover:shadow-lg hover:shadow-warm-200 transition-all duration-300 hover:-translate-y-0.5">
+                                Send Message
+                            </button>
+                        </div>
+                        <p id="contactMsg" class="font-inter text-sm text-sage-500 text-center mt-4 hidden">
+                            <i class="fas fa-check-circle"></i> Message sent! Thank you for reaching out.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-earth-600 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Footer Logo -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="relative w-10 h-10 flex items-center justify-center">
+                            <svg class="w-10 h-10" viewBox="0 0 48 48" fill="none">
+                                <circle cx="24" cy="24" r="22" stroke="#C5A87A" stroke-width="1.5" stroke-dasharray="4 3"/>
+                            </svg>
+                            <svg class="absolute w-5 h-5" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L15 10L12 8L9 10L12 2Z" fill="#FFDBA8"/>
+                                <path d="M12 22L9 14L12 16L15 14L12 22Z" fill="#C5A87A"/>
+                                <circle cx="12" cy="12" r="2" fill="#FFDBA8"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-playfair text-xl font-bold text-warm-200">The Joyful Explorer</h3>
+                            <p class="font-caveat text-sm text-earth-300">Notes From The Road</p>
+                        </div>
+                    </div>
+                    <p class="font-inter text-sm text-earth-300 leading-relaxed max-w-sm">
+                        A personal travel journal — real experiences, observed and remembered. Not a commerce site, just honest stories from the road.
+                    </p>
+                    <div class="flex gap-3 mt-6">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-warm-500 transition-all duration-300">
+                            <i class="fab fa-wordpress text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-warm-500 transition-all duration-300">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-warm-500 transition-all duration-300">
+                            <i class="fab fa-pinterest text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-warm-500 transition-all duration-300">
+                            <i class="fas fa-rss text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-playfair text-lg font-semibold text-warm-200 mb-5">Explore</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">Home</a></li>
+                        <li><a href="#about" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">About</a></li>
+                        <li><a href="#journal" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">Journal</a></li>
+                        <li><a href="#gallery" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">Gallery</a></li>
+                        <li><a href="#destinations" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">Destinations</a></li>
+                        <li><a href="#contact" class="font-inter text-sm text-earth-300 hover:text-warm-300 transition-colors">Get In Touch</a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent Posts -->
+                <div>
+                    <h4 class="font-playfair text-lg font-semibold text-warm-200 mb-5">Latest Posts</h4>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#" class="group">
+                                <p class="font-inter text-sm text-earth-300 group-hover:text-warm-300 transition-colors">Morning Light on the Left Bank</p>
+                                <p class="font-inter text-xs text-earth-400 mt-1">March 15, 2025</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="group">
+                                <p class="font-inter text-sm text-earth-300 group-hover:text-warm-300 transition-colors">Tram 28 and Tilework Stories</p>
+                                <p class="font-inter text-xs text-earth-400 mt-1">March 8, 2025</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="group">
+                                <p class="font-inter text-sm text-earth-300 group-hover:text-warm-300 transition-colors">A Long Lunch in Trastevere</p>
+                                <p class="font-inter text-xs text-earth-400 mt-1">February 28, 2025</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider mb-8 opacity-30"></div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p class="font-inter text-xs text-earth-400">
+                    © 2026 The Joyful Explorer. A personal travel journal.. All rights reserved. Developed by Zannatul.
+                </p>
+                <p class="font-inter text-xs text-earth-400 flex items-center gap-1">
+                    Powered by <i class="fab fa-wordpress mx-1"></i> WordPress · Twenty Twenty-Four
+                </p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-8 right-8 w-12 h-12 bg-warm-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-warm-600 transition-all duration-300 hover:-translate-y-1 opacity-0 pointer-events-none z-40">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+
+        // Header scroll effect
+        const header = document.getElementById('mainHeader');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+
+            if (window.scrollY > 600) {
+                backToTop.style.opacity = '1';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-hidden').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + '+';
+                }
+            }
+            updateCounter();
+        }
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter('countCities', 12, 1500);
+                    animateCounter('countStories', 28, 1800);
+                    animateCounter('countPhotos', 350, 2000);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const counterSection = document.getElementById('countCities');
+        if (counterSection) {
+            counterObserver.observe(counterSection.closest('div').parentElement);
+        }
+
+        // Subscribe form
+        function handleSubscribe(e) {
+            e.preventDefault();
+            document.getElementById('subscribeMsg').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('subscribeMsg').classList.add('hidden');
+            }, 5000);
+        }
+
+        // Contact form
+        function handleContact(e) {
+            e.preventDefault();
+            document.getElementById('contactMsg').classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                document.getElementById('contactMsg').classList.add('hidden');
+            }, 5000);
+        }
+
+        // Smooth active nav highlighting
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+        });
+
+        // Parallax on hero (subtle)
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const hero = document.querySelector('.hero-section');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.backgroundPositionY = `${scrolled * 0.4}px`;
+            }
+        });
+    </script>
+</body>
+</html>
